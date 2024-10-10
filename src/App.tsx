@@ -4,44 +4,25 @@ import DogCard from "./Components/DogCard";
 
 export default function App() {
   const { dogs, updateDogs } = useContext(DogsContext);
+
+  async function fetchAPI() {
+    const res = await fetch("https://majazocom.github.io/Data/dogs.json");
+    const data = await res.json();
+    return data;
+  }
   useEffect(() => {
-    // hämtar från API:et
-    const fromAPI = [{
-      "name": "Molly",
-      "sex": "female",
-      "breed": "briard",
-      "img": "https://images.dog.ceo/breeds/briard/n02105251_6840.jpg",
-      "present": false,
-      "age": 4,
-      "chipNumber": "IEH455006",
-      "owner": {
-      "name": "Wilmer",
-      "lastName": "Svensson",
-      "phoneNumber": "0769239356"
-      }
-      },
-      {
-      "name": "Bella",
-      "sex": "female",
-      "breed": "labrador",
-      "img": "https://images.dog.ceo/breeds/labrador/n02099712_3947.jpg",
-      "present": false,
-      "age": 1,
-      "chipNumber": "HPF367168",
-      "owner": {
-      "name": "Tina",
-      "lastName": "Ahlberg",
-      "phoneNumber": "0732303484"
-      }
-      }];
-    updateDogs('set', fromAPI);
+    const fetchData = async () => {
+      const fromAPI = await fetchAPI();
+      updateDogs('set', fromAPI);
+    };
+    fetchData();
   }, []);
 
   return (
     <>
-    {
-      dogs && dogs.map(() => <DogCard />)
-    }
+      {
+        dogs && dogs.map(() => <DogCard />)
+      }
     </>
   )
 }

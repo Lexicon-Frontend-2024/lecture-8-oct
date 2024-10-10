@@ -28,9 +28,13 @@ export const DogsContextProvider = ({ children }: DogsProviderProps) => {
                 break;
             case 'delete':
                 // funktionalitet för att ta bort hund
+                // kod
+                // kod
                 break;
             case 'update':
                 // funktionalitet för att ändra en hund i listan
+                // kod
+                // kod
                 break;
             case 'set':
                 //funktionalitet för att skriva över alla hundar med de från API:et
